@@ -1,9 +1,5 @@
 # frozen_string_literal: true
-
-def substract(number)
-  ((number / 3).round - 2)
-end
-
+sum = 0
 input = %i(119031
 111204
 75773
@@ -105,13 +101,16 @@ input = %i(119031
 121820
 121214).map(&:to_s).map { |i| Integer(i) }
 
-sum = 0
+def substract(number, sum = 0)
+  result = ((number / 3).round - 2)
+  sum += result
+  result > 5 ? substract(result, sum) : sum
+end
+
 input.each do |number|
   sum += substract(number)
 end
 
 p sum
-
-
 
 
